@@ -10,6 +10,7 @@ import java.util.Objects;
                 @UniqueConstraint(columnNames = "email"),
                 @UniqueConstraint(columnNames = "nomPrenoms")
         })
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Personne {
 
     @Id

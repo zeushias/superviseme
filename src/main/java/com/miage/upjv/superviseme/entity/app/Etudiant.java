@@ -1,8 +1,10 @@
 package com.miage.upjv.superviseme.entity.app;
 
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 
 @Entity
+@DiscriminatorValue(value = "ETU")
 public class Etudiant extends Personne{
 
     private String niveauScolaire;

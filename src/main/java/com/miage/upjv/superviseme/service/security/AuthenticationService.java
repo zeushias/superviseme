@@ -12,7 +12,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
-@EnableJpaRepositories(basePackages = "com.miage.upjv.superviseme.repository")
 public class AuthenticationService {
 
     @Autowired
