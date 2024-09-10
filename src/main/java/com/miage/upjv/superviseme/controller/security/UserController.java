@@ -2,20 +2,24 @@ package com.miage.upjv.superviseme.controller.security;
 
 import com.miage.upjv.superviseme.entity.security.User;
 import com.miage.upjv.superviseme.security.services.security.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RequestMapping("/users")
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
+@RequestMapping("/superviseme/users")
 public class UserController {
 
-    private final UserService userService;
+    @Autowired
+    UserService userService;
 
     public UserController(UserService userService) {
         this.userService = userService;
@@ -30,10 +34,10 @@ public class UserController {
         return ResponseEntity.ok(currentUser);
     }
 
-    @GetMapping("/")
+    @GetMapping("/all")
     public ResponseEntity<List<User>> allUsers() {
         List <User> users = userService.allUsers();
 
-        return ResponseEntity.ok(users);
+        return ResponseEntity.ok(userService.getAll());
     }
 }

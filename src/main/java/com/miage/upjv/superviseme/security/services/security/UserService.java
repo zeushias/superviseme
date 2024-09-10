@@ -2,6 +2,7 @@ package com.miage.upjv.superviseme.security.services.security;
 
 import com.miage.upjv.superviseme.entity.security.User;
 import com.miage.upjv.superviseme.repository.security.UserRepository;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -22,5 +23,9 @@ public class UserService {
         userRepository.findAll().forEach(users::add);
 
         return users;
+    }
+
+    public List<User> getAll(){
+        return userRepository.findAll();
     }
 }

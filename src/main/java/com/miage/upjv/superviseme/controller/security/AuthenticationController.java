@@ -7,9 +7,11 @@ import com.miage.upjv.superviseme.payload.response.LoginResponse;
 import com.miage.upjv.superviseme.security.jwt.JwtService;
 import com.miage.upjv.superviseme.service.security.AuthenticationService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin(origins = "http://localhost:4200")
+@RestController
+@RequestMapping("/superviseme/auth")
 public class AuthenticationController {
 
     private final JwtService jwtService;
