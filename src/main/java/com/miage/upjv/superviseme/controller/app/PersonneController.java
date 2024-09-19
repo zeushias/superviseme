@@ -96,13 +96,13 @@ public class PersonneController {
     }
 
     @GetMapping("/personne/find/{email}")
-    public Optional<Personne> findPersonneByEmail(@PathVariable("email") String email){
+    public Optional<Personne> findByEmail(@PathVariable("email") String email){
         return personneService.findByEmail(email);
     }
 
     @GetMapping("/personne/find/{id}")
-    public Optional<Personne> findPersonneById(@PathVariable("id") Integer id){
-        return personneService.findPersonneById(id);
+    public Optional<Personne> findById(@PathVariable("id") Integer id){
+        return personneService.findById(id);
     }
 
 }
