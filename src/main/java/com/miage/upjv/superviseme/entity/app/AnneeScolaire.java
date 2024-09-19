@@ -1,22 +1,24 @@
 package com.miage.upjv.superviseme.entity.app;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Objects;
 
 @Entity
-@Table(name = "entreprises",
+@Table(name = "annee_scolaires",
         uniqueConstraints = {
-                @UniqueConstraint(columnNames = "idEntreprise"),
+                @UniqueConstraint(columnNames = "idAnnee"),
                 @UniqueConstraint(columnNames = "designation")
         })
-public class Entreprise {
+public class AnneeScolaire {
 
         @Id
         @GeneratedValue(strategy = GenerationType.AUTO)
-        @Column(name = "id_entreprise", nullable = false)
+        @Column(name = "id_annee", nullable = false)
         private Integer id;
 
         @NotBlank
@@ -24,24 +26,16 @@ public class Entreprise {
         private String designation;
 
         @NotBlank
-        @Size(max = 50)
-        private String siret;
+        private boolean actif = true;
 
-        @NotBlank
-        private String adresse;
-
-        @NotBlank
-        @Size(max = 14)
-        private String telephone;
-
-        public Entreprise() {
+        public AnneeScolaire() {
         }
 
         public Integer getId() {
                 return id;
         }
 
-        public void setId(Integer id) {
+        public void setIdAnnee(Integer idEntreprise) {
                 this.id = id;
         }
 
@@ -53,31 +47,16 @@ public class Entreprise {
                 this.designation = designation;
         }
 
-        public @NotBlank String getAdresse() {
-                return adresse;
-        }
+        @NotBlank
+        public boolean isActif() { return actif; }
 
-        public void setAdresse(@NotBlank String adresse) {
-                this.adresse = adresse;
-        }
-
-        public @NotBlank @Size(max = 14) String getTelephone() {
-                return telephone;
-        }
-
-        public void setTelephone(@NotBlank @Size(max = 14) String telephone) {
-                this.telephone = telephone;
-        }
-
-        public @NotBlank @Size(max = 50) String getSiret() { return siret; }
-
-        public void setSiret(@NotBlank @Size(max = 50) String siret) { this.siret = siret;}
+        public void setActif(@NotBlank boolean actif) { this.actif = actif; }
 
         @Override
         public boolean equals(Object o) {
                 if (this == o) return true;
                 if (o == null || getClass() != o.getClass()) return false;
-                Entreprise that = (Entreprise) o;
+                AnneeScolaire that = (AnneeScolaire) o;
                 return Objects.equals(id, that.id);
         }
 

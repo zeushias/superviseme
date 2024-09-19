@@ -1,12 +1,12 @@
 package com.miage.upjv.superviseme.entity.app;
 
 import jakarta.persistence.*;
-
 import java.util.Objects;
 
 @Entity
 @Table(	name = "personnes",
         uniqueConstraints = {
+                @UniqueConstraint(columnNames = "idPersonne"),
                 @UniqueConstraint(columnNames = "email"),
                 @UniqueConstraint(columnNames = "nomPrenoms")
         })
@@ -16,7 +16,7 @@ public class Personne {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_personne", nullable = false)
-    private Integer idPersonne;
+    private Integer id;
 
     @Column(name = "nom_prenoms", nullable = false)
     private String nomPrenoms;
@@ -32,12 +32,20 @@ public class Personne {
     public Personne() {
     }
 
-    public Integer getIdPersonne() {
-        return idPersonne;
+    public Personne(String nomPrenoms, String email, String telephone, String adresse, String password) {
+        this.nomPrenoms = nomPrenoms;
+        this.email = email;
+        this.telephone = telephone;
+        this.adresse = adresse;
+        this.password = password;
     }
 
-    public void setIdPersonne(Integer idPersonne) {
-        this.idPersonne = idPersonne;
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getNomPrenoms() {
@@ -85,11 +93,11 @@ public class Personne {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Personne personne = (Personne) o;
-        return Objects.equals(idPersonne, personne.idPersonne);
+        return Objects.equals(id, personne.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(idPersonne);
+        return Objects.hashCode(id);
     }
 }

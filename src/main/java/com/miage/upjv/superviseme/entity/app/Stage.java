@@ -18,7 +18,7 @@ public class Stage {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer idStage;
+    private Integer id;
 
     @NotBlank
     @Column(name = "theme_stage", nullable = false)
@@ -39,15 +39,31 @@ public class Stage {
     @Column(name = "date_fin", nullable = false)
     private Date dateFin;
 
+    @ManyToOne
+    @JoinColumn (name = "id_Etudiant", nullable = true)
+    private  Etudiant etudiant;
+
+    @ManyToOne
+    @JoinColumn(name = "id_Enseignant", nullable = true)
+    private Enseignant enseignant;
+
+    @ManyToOne
+    @JoinColumn(name = "id_Entreprise", nullable = true)
+    private Entreprise entreprise;
+
+    @ManyToOne
+    @JoinColumn(name = "idAnnee", nullable = true)
+    private AnneeScolaire anneeScolaire;
+
     public Stage() {
     }
 
-    public Integer getIdStage() {
-        return idStage;
+    public Integer getId() {
+        return id;
     }
 
-    public void setIdStage(Integer idStage) {
-        this.idStage = idStage;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public @NotBlank String getThemeStage() {
@@ -95,11 +111,11 @@ public class Stage {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Stage stage = (Stage) o;
-        return Objects.equals(idStage, stage.idStage);
+        return Objects.equals(id, stage.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(idStage);
+        return Objects.hashCode(id);
     }
 }

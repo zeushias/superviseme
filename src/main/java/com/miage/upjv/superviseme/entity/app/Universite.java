@@ -17,7 +17,7 @@ public class Universite {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_universite", nullable = false)
-    private Integer idUniversite;
+    private Integer id;
 
     @NotBlank
     @Size(max = 50)
@@ -34,12 +34,12 @@ public class Universite {
     public Universite() {
     }
 
-    public Integer getIdUniversite() {
-        return idUniversite;
+    public Integer getId() {
+        return id;
     }
 
-    public void setIdUniversite(Integer idUniversite) {
-        this.idUniversite = idUniversite;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getDesignation() {
@@ -71,11 +71,11 @@ public class Universite {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Universite that = (Universite) o;
-        return Objects.equals(idUniversite, that.idUniversite);
+        return Objects.equals(id, that.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(idUniversite);
+        return Objects.hashCode(id);
     }
 }

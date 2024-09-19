@@ -12,6 +12,11 @@ public class Enseignant extends Personne {
     public Enseignant() {
     }
 
+    public Enseignant(String nomPrenoms, String email, String telephone, String adresse, String password, String matiere) {
+        super(nomPrenoms, email, telephone, adresse, password);
+        this.matiere = matiere;
+    }
+
     public String getMatiere() {
         return matiere;
     }

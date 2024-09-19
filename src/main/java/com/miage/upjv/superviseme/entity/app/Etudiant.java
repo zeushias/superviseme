@@ -12,6 +12,11 @@ public class Etudiant extends Personne{
     public Etudiant() {
     }
 
+    public Etudiant(String nomPrenoms, String email, String telephone, String adresse, String password, String niveauScolaire) {
+        super(nomPrenoms, email, telephone, adresse, password);
+        this.niveauScolaire = niveauScolaire;
+    }
+
     public String getNiveauScolaire() {
         return niveauScolaire;
     }

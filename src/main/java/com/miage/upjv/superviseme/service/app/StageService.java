@@ -18,4 +18,22 @@ public class StageService {
         return this.stageRepository.getStageByDateDebutAndDateFin(dateDebut, dateFin);
     }
 
+    /**
+     *
+     * @param stage
+     * @return
+     */
+    public boolean save(Stage stage){
+        stageRepository.save(stage);
+        return true;
+    }
+
+    /**
+     *
+     * @param id
+     * @return
+     */
+    public Optional<Stage> findById(Integer id) {
+        return stageRepository.findById(id);
+    }
 }
