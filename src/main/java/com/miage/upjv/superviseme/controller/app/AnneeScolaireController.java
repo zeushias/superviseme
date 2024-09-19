@@ -20,30 +20,30 @@ public class AnneeScolaireController {
     AnneeScolaireService anneeScolaireService;
 
     @GetMapping("/annee/all")
-    public List<AnneeScolaire> findAll(){
+    public List<AnneeScolaire> findAll() {
         return anneeScolaireService.findAll();
     }
 
     @GetMapping("/annee/actif")
-    public List<AnneeScolaire> findAnneeActif(){
+    public List<AnneeScolaire> findAnneeActif() {
         List<AnneeScolaire> anneeScolaires = new ArrayList<>();
         List<Optional<AnneeScolaire>> scolaires = anneeScolaireService.findAnneeActif(true);
-        if(!scolaires.isEmpty()){
-             for(Optional<AnneeScolaire> sc : scolaires){
-                 anneeScolaires.add(sc.get());
-             }
+        if (!scolaires.isEmpty()) {
+            for (Optional<AnneeScolaire> sc : scolaires) {
+                anneeScolaires.add(sc.get());
+            }
         }
         return anneeScolaires;
     }
 
     @PostMapping("/annee/close")
-    public ResponseEntity<String> close(@RequestBody AnneeScolaire anneeScolaire){
+    public ResponseEntity<String> close(@RequestBody AnneeScolaire anneeScolaire) {
 
         Optional<AnneeScolaire> as = null;
 
         // vérifier si l'année existe
 
-        if(anneeScolaire != null) {
+        if (anneeScolaire != null) {
             if (anneeScolaire.getId() != null) {
                 as = anneeScolaireService.findById(anneeScolaire.getId());
             } else {
@@ -52,7 +52,7 @@ public class AnneeScolaireController {
                 }
             }
 
-            if(!as.isEmpty()){
+            if (!as.isEmpty()) {
                 // save
                 as.get().setActif(false);
                 anneeScolaireService.save(as.get());
@@ -63,7 +63,7 @@ public class AnneeScolaireController {
     }
 
     @PostMapping("/annee/modify")
-    public ResponseEntity<String> modify(@RequestBody AnneeScolaire anneeScolaire){
+    public ResponseEntity<String> modify(@RequestBody AnneeScolaire anneeScolaire) {
         //contrôle
         // Check if the entity with the given ID exists
         Optional<AnneeScolaire> existingAnnee = anneeScolaireService.findById(anneeScolaire.getId());
@@ -78,39 +78,39 @@ public class AnneeScolaireController {
     }
 
     @PostMapping("/annee/save")
-    public  ResponseEntity<String> save(@RequestBody AnneeScolaire anneeScolaire){
+    public ResponseEntity<String> save(@RequestBody AnneeScolaire anneeScolaire) {
         //contrôle
         // save
-        if(this.controle(anneeScolaire)) {
+        if (this.controle(anneeScolaire)) {
             anneeScolaireService.save(anneeScolaire);
             return ResponseEntity.ok("Année scolaire modifiée avec successfully.");
         }
         return ResponseEntity.status(HttpStatus.CONFLICT).body("Année scolaire existe déjà");
     }
 
-    public boolean controle(AnneeScolaire anneeScolaire){
+    public boolean controle(AnneeScolaire anneeScolaire) {
 
         Optional<AnneeScolaire> scolaire = anneeScolaireService.findByDesignation(anneeScolaire.getDesignation());
 
         // enregistrement
-        if(anneeScolaire.getId() == null || anneeScolaire.getId() == 0){
+        if (anneeScolaire.getId() == null || anneeScolaire.getId() == 0) {
 
             // vérifions s'il y a une annee actif
             boolean actif = anneeScolaireService.findByActif(true);
-            if (actif){
+            if (actif) {
                 // on ne peut plus enrégistrer
                 return false;
             } else {
                 // vérifions la désignation
                 // si on a un enrégistrement
-                if(!scolaire.isEmpty()){
+                if (!scolaire.isEmpty()) {
                     return false;
                 }
             }
         } else {
             // vérifions la désignation
             // si on a un enrégistrement
-            if(scolaire != null){
+            if (scolaire != null) {
                 return false;
             }
         }

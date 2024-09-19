@@ -26,7 +26,7 @@ public class ResponsableController {
     UserInfoService userInfoService;
 
     @PostMapping("/responsable/modify")
-    public ResponseEntity<String> modify(@RequestBody Responsable responsable){
+    public ResponseEntity<String> modify(@RequestBody Responsable responsable) {
 
         Optional<Responsable> existingResponsable = responsableService.findById(responsable.getId());
 
@@ -40,7 +40,7 @@ public class ResponsableController {
     }
 
     @PostMapping("/responsable/save")
-    public ResponseEntity<String> save(@RequestBody Responsable responsable){
+    public ResponseEntity<String> save(@RequestBody Responsable responsable) {
         responsableService.save(responsable);
 
         UserInfo user = new UserInfo();
@@ -54,9 +54,9 @@ public class ResponsableController {
     }
 
     @PostMapping("/responsable/save/list")
-    public ResponseEntity<String> save(@RequestBody List<Responsable> responsables){
+    public ResponseEntity<String> save(@RequestBody List<Responsable> responsables) {
         // save
-        for(Responsable responsable : responsables){
+        for (Responsable responsable : responsables) {
             responsableService.save(responsable);
         }
         return ResponseEntity.ok("Responsables enrégistrés avec succès.");

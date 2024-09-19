@@ -19,12 +19,12 @@ public class StageController {
     @Autowired
     StageService stageService;
 
-    public Optional<Stage> getStageByDateDebutAndDateFin(@PathVariable Date dateDebut, Date dateFin){
+    public Optional<Stage> getStageByDateDebutAndDateFin(@PathVariable Date dateDebut, Date dateFin) {
         return this.stageService.getStageByDateDebutAndDateFin(dateDebut, dateFin);
     }
 
     @PostMapping("/stage/modify")
-    public ResponseEntity<String> modify(@RequestBody Stage stage){
+    public ResponseEntity<String> modify(@RequestBody Stage stage) {
         Optional<Stage> existingStage = stageService.findById(stage.getId());
 
         // save
@@ -37,16 +37,16 @@ public class StageController {
     }
 
     @PostMapping("/stage/save")
-    public ResponseEntity<String> save(@RequestBody Stage stage){
+    public ResponseEntity<String> save(@RequestBody Stage stage) {
         // save
         stageService.save(stage);
         return ResponseEntity.ok("Stage enrégistré avec succès.");
     }
 
     @PostMapping("/stage/save/list")
-    public ResponseEntity<String> save(@RequestBody List<Stage> stages){
+    public ResponseEntity<String> save(@RequestBody List<Stage> stages) {
         // save
-        for(Stage stage : stages){
+        for (Stage stage : stages) {
             stageService.save(stage);
         }
         return ResponseEntity.ok("Stages enrégistrés avec succès.");

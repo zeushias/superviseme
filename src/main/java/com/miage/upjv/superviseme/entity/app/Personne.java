@@ -1,10 +1,11 @@
 package com.miage.upjv.superviseme.entity.app;
 
 import jakarta.persistence.*;
+
 import java.util.Objects;
 
 @Entity
-@Table(	name = "personnes",
+@Table(name = "personnes",
         uniqueConstraints = {
                 @UniqueConstraint(columnNames = "idPersonne"),
                 @UniqueConstraint(columnNames = "email"),

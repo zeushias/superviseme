@@ -42,9 +42,9 @@ public class PersonneController {
     UserInfoService userInfoService;
 
     @PostMapping("/personne/save")
-    public ResponseEntity<String> save(@RequestBody List<PersonneDetails> ListPersonneDetails){
+    public ResponseEntity<String> save(@RequestBody List<PersonneDetails> ListPersonneDetails) {
 
-        for(PersonneDetails personneDetail : ListPersonneDetails) {
+        for (PersonneDetails personneDetail : ListPersonneDetails) {
 
             List<Role> roles = new ArrayList<>();
             UserInfo user = new UserInfo();
@@ -96,12 +96,12 @@ public class PersonneController {
     }
 
     @GetMapping("/personne/find/{email}")
-    public Optional<Personne> findByEmail(@PathVariable("email") String email){
+    public Optional<Personne> findByEmail(@PathVariable("email") String email) {
         return personneService.findByEmail(email);
     }
 
     @GetMapping("/personne/find/{id}")
-    public Optional<Personne> findById(@PathVariable("id") Integer id){
+    public Optional<Personne> findById(@PathVariable("id") Integer id) {
         return personneService.findById(id);
     }
 

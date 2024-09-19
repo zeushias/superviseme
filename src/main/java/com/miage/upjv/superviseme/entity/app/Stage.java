@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.Objects;
 
 @Entity
-@Table(	name = "stages",
+@Table(name = "stages",
         uniqueConstraints = {
                 @UniqueConstraint(columnNames = "idStage"),
                 @UniqueConstraint(columnNames = "themeStage"),
@@ -40,8 +40,8 @@ public class Stage {
     private Date dateFin;
 
     @ManyToOne
-    @JoinColumn (name = "id_Etudiant", nullable = true)
-    private  Etudiant etudiant;
+    @JoinColumn(name = "id_Etudiant", nullable = true)
+    private Etudiant etudiant;
 
     @ManyToOne
     @JoinColumn(name = "id_Enseignant", nullable = true)

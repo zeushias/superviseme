@@ -5,7 +5,7 @@ import jakarta.persistence.Entity;
 
 @Entity
 @DiscriminatorValue(value = "ETU")
-public class Etudiant extends Personne{
+public class Etudiant extends Personne {
 
     private String niveauScolaire;
 

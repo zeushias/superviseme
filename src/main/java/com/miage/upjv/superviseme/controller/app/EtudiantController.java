@@ -27,7 +27,7 @@ public class EtudiantController {
     UserInfoService userInfoService;
 
     @PostMapping("/etudiant/modify")
-    public ResponseEntity<String> modify(@RequestBody Etudiant etudiant){
+    public ResponseEntity<String> modify(@RequestBody Etudiant etudiant) {
 
         Optional<Etudiant> existingEtudiant = etudiantService.findById(etudiant.getId());
 
@@ -41,7 +41,7 @@ public class EtudiantController {
     }
 
     @PostMapping("/etudiant/save")
-    public ResponseEntity<String> save(@RequestBody Etudiant etudiant){
+    public ResponseEntity<String> save(@RequestBody Etudiant etudiant) {
         etudiantService.save(etudiant);
         UserInfo user = new UserInfo();
         user.setRoles(ERole.ROLE_ETUDIANT.toString());
@@ -54,9 +54,9 @@ public class EtudiantController {
     }
 
     @PostMapping("/etudiant/save/list")
-    public ResponseEntity<String> save(@RequestBody List<Etudiant> etudiants){
+    public ResponseEntity<String> save(@RequestBody List<Etudiant> etudiants) {
         // save
-        for(Etudiant etudiant : etudiants){
+        for (Etudiant etudiant : etudiants) {
             etudiantService.save(etudiant);
         }
         return ResponseEntity.ok("Etudiants enrégistrés avec succès.");

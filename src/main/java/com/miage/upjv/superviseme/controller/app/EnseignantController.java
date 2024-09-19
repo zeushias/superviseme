@@ -26,8 +26,8 @@ public class EnseignantController {
     UserInfoService userInfoService;
 
     @PostMapping("/enseignant/modify")
-    public ResponseEntity<String> modify(@RequestBody Enseignant enseignant){
-        Optional<Enseignant> existingEnseignant= enseignantService.findById(enseignant.getId());
+    public ResponseEntity<String> modify(@RequestBody Enseignant enseignant) {
+        Optional<Enseignant> existingEnseignant = enseignantService.findById(enseignant.getId());
 
         // save
         if (existingEnseignant.isPresent()) {
@@ -39,7 +39,7 @@ public class EnseignantController {
     }
 
     @PostMapping("/enseignant/save")
-    public ResponseEntity<String> save(@RequestBody Enseignant enseignant){
+    public ResponseEntity<String> save(@RequestBody Enseignant enseignant) {
         // save
         enseignantService.save(enseignant);
 
@@ -55,9 +55,9 @@ public class EnseignantController {
     }
 
     @PostMapping("/enseignant/save/list")
-    public ResponseEntity<String> save(@RequestBody List<Enseignant> enseignants){
+    public ResponseEntity<String> save(@RequestBody List<Enseignant> enseignants) {
         // save
-        for(Enseignant enseignant : enseignants){
+        for (Enseignant enseignant : enseignants) {
             enseignantService.save(enseignant);
         }
         return ResponseEntity.ok("Enseignants enrégistrés avec succès.");

@@ -20,16 +20,17 @@ public class EntrepriseController {
     EntrepriseService entrepriseService;
 
     @GetMapping("/entreprise/all")
-    public List<Entreprise> findAll(){
+    public List<Entreprise> findAll() {
         return entrepriseService.findAll();
     }
 
     @PostMapping("/entreprise/modify")
-    public ResponseEntity<String> modify(@RequestBody Entreprise entreprise){
+    public ResponseEntity<String> modify(@RequestBody Entreprise entreprise) {
         Optional<Entreprise> existingEntreprise = entrepriseService.findById(entreprise.getId());
 
         // save
         if (existingEntreprise.isPresent()) {
+            entreprise.setSiret(existingEntreprise.get().getSiret());
             entrepriseService.save(entreprise);
             return ResponseEntity.ok("Entreprise modifiée avec succès.");
         } else {
@@ -38,18 +39,21 @@ public class EntrepriseController {
     }
 
     @PostMapping("/entreprise/save")
-    public ResponseEntity<String> save(@RequestBody Entreprise entreprise){
+    public ResponseEntity<String> save(@RequestBody Entreprise entreprise) {
         // vérification siret
-
+        Optional<Entreprise> existingEntreprise = entrepriseService.findBySiret(entreprise.getSiret());
         // save
-        entrepriseService.save(entreprise);
-        return ResponseEntity.ok("Entreprise enrégistrée avec succès.");
+        if (!existingEntreprise.isPresent()) {
+            entrepriseService.save(entreprise);
+            return ResponseEntity.ok("Entreprise enrégistrée avec succès.");
+        }
+        return ResponseEntity.status(HttpStatus.CONFLICT).body("Entreprise déjà existante.");
     }
 
     @PostMapping("/entreprise/save/list")
-    public ResponseEntity<String> save(@RequestBody List<Entreprise> entreprises){
+    public ResponseEntity<String> save(@RequestBody List<Entreprise> entreprises) {
         // save
-        for(Entreprise entreprise : entreprises){
+        for (Entreprise entreprise : entreprises) {
             entrepriseService.save(entreprise);
         }
         return ResponseEntity.ok("Entreprises enrégistrées avec succès.");

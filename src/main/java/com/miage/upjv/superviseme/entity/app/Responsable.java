@@ -5,7 +5,7 @@ import jakarta.persistence.Entity;
 
 @Entity
 @DiscriminatorValue(value = "RES")
-public class Responsable extends Personne{
+public class Responsable extends Personne {
 
     private String poste;
 

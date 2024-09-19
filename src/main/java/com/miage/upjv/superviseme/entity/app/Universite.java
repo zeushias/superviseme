@@ -7,7 +7,7 @@ import javax.validation.constraints.Size;
 import java.util.Objects;
 
 @Entity
-@Table(	name = "universites",
+@Table(name = "universites",
         uniqueConstraints = {
                 @UniqueConstraint(columnNames = "idUniversite"),
                 @UniqueConstraint(columnNames = "designation")

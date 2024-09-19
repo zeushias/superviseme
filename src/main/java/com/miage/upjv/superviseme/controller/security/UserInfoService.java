@@ -1,9 +1,9 @@
 package com.miage.upjv.superviseme.controller.security;
 
 /**
- *
  * @author kodzo
  */
+
 import com.miage.upjv.superviseme.entity.security.UserInfo;
 import com.miage.upjv.superviseme.configurations.UserInfoDetails;
 import com.miage.upjv.superviseme.repository.security.UserInfoRepository;
@@ -44,8 +44,8 @@ public class UserInfoService implements UserDetailsService {
         Optional<UserInfo> uinfo = repository.findByEmail(userInfo.getEmail());
 
         // Encode password before saving the user
-        if(uinfo.isEmpty()) {
-            if(userInfo.getPassword() != null && userInfo.getPassword() != ""){
+        if (uinfo.isEmpty()) {
+            if (userInfo.getPassword() != null && userInfo.getPassword() != "") {
                 userInfo.setPassword(userInfo.getEmail());
             }
             userInfo.setPassword(encoder.encode(userInfo.getPassword()));
@@ -61,8 +61,8 @@ public class UserInfoService implements UserDetailsService {
      * @param email
      * @return
      */
-    public UserInfo findUserInfoByEmail(String email){
-        Optional<UserInfo> userInfo= repository.findUserInfoByEmail(email);
+    public UserInfo findUserInfoByEmail(String email) {
+        Optional<UserInfo> userInfo = repository.findUserInfoByEmail(email);
         return userInfo.get();
     }
 }
